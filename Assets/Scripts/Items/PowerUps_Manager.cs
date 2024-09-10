@@ -17,14 +17,24 @@ public class PowerUps_Manager : MonoBehaviour
     //Variables publicas
     public int activePowerUp;
 
+    [Header("Damages Locos")]
+    public int ballDamage = 0;
+
+    [Header("Penetracion OwO")]
+    public bool penetration = false;
+    public int _penetrationCharge = 0;
+
     //Variables privadas
-    [Header ("GhostBall PowerUp")]
+    [Header("GhostBall PowerUp")]
     [SerializeField] private GameObject ghostBall_Prefab;
     [SerializeField] private Transform ghostBall_Spawn;
 
     [Header("ExitLock PowerUp")]
     [SerializeField] private GameObject lock_Prefab;
     [SerializeField] private Transform lock_Spawn;
+
+    [Header("Penetracion Uffas")]
+    [SerializeField] private int penetrationCharges = 3;
 
     //Funcion para activar el power up
     public void ActivatePowerUp()
@@ -59,19 +69,20 @@ public class PowerUps_Manager : MonoBehaviour
     //Funcion para crear un bloqueo en la salida
     private void ExitLock()
     {
-        Debug.Log("Salida bloqueada");
+        Instantiate(lock_Prefab, lock_Spawn.transform.position, Quaternion.identity);
     }
 
     //Funcion para crear mas flippers
     private void MoreDamage()
     {
-        Debug.Log("Mas damages");
+        ballDamage++;
     }
 
     //Funcion para que la bola penetre
     private void Penetration()
     {
-        Debug.Log("Buena penetracion");
+        penetration = true;
+        _penetrationCharge = 3;
     }
     #endregion
 }
