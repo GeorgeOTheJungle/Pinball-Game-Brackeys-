@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 2793280407698077723}
   - component: {fileID: 8277640363883278721}
   - component: {fileID: 6955744950548750086}
+  - component: {fileID: 8615754183437459075}
   m_Layer: 6
   m_Name: GhostBall
   m_TagString: GhostBall
@@ -180,3 +181,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.15
+--- !u!114 &8615754183437459075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5058052476883649154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d82de4132e152438de2e3dc927c1be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

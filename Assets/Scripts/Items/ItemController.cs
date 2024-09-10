@@ -41,7 +41,7 @@ public class ItemController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Ball")
+        if (other.gameObject.tag == "Ball" || other.gameObject.tag == "GhostBall")
         {
             DeactivateItem();
             PUS.PowerUpObtained();

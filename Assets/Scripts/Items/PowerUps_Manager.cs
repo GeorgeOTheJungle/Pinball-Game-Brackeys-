@@ -17,6 +17,15 @@ public class PowerUps_Manager : MonoBehaviour
     //Variables publicas
     public int activePowerUp;
 
+    //Variables privadas
+    [Header ("GhostBall PowerUp")]
+    [SerializeField] private GameObject ghostBall_Prefab;
+    [SerializeField] private Transform ghostBall_Spawn;
+
+    [Header("ExitLock PowerUp")]
+    [SerializeField] private GameObject lock_Prefab;
+    [SerializeField] private Transform lock_Spawn;
+
     //Funcion para activar el power up
     public void ActivatePowerUp()
     {
@@ -44,7 +53,7 @@ public class PowerUps_Manager : MonoBehaviour
     //Funcion para crear una bola fantasmal
     private void GhostBall()
     {
-        Debug.Log("Bolas fantasmales");
+        Instantiate(ghostBall_Prefab, ghostBall_Spawn.transform.position, Quaternion.identity);
     }
 
     //Funcion para crear un bloqueo en la salida
