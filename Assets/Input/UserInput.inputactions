@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LauncherHold",
+                    "type": "Button",
+                    "id": "d610fc82-cdf2-4d6e-9584-e8c8282f3508",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -66,6 +75,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RightFlip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1e8b4197-451a-4499-9bab-b7ec0bb0ac95",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LauncherHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "14b3c927-1732-487d-86f1-68fa428d373e",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LauncherHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
