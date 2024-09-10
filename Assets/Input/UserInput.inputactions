@@ -1,0 +1,76 @@
+{
+    "name": "UserInput",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "8c018eef-e142-4532-a156-c69355394b94",
+            "actions": [
+                {
+                    "name": "LeftFlip",
+                    "type": "Button",
+                    "id": "d3b7f1d6-fad0-49c0-b035-dcc8aa4d7506",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightFlip",
+                    "type": "Button",
+                    "id": "64e60d71-e9f4-43f5-b2c4-f24d25694fbc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b8fd735a-64eb-4d39-8068-deb119d8c633",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftFlip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3836d3c0-0429-4a52-83d1-a8fad6b54a1a",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftFlip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70c31876-3892-4b86-886d-d3d8f0d2ed48",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightFlip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "20765abf-b937-469e-a7e4-67bfc0e9a44f",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightFlip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
