@@ -44,6 +44,15 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LauncherHold"",
+                    ""type"": ""Button"",
+                    ""id"": ""d610fc82-cdf2-4d6e-9584-e8c8282f3508"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -90,6 +99,28 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
                     ""action"": ""RightFlip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e8b4197-451a-4499-9bab-b7ec0bb0ac95"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LauncherHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14b3c927-1732-487d-86f1-68fa428d373e"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LauncherHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -100,6 +131,7 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_LeftFlip = m_Gameplay.FindAction("LeftFlip", throwIfNotFound: true);
         m_Gameplay_RightFlip = m_Gameplay.FindAction("RightFlip", throwIfNotFound: true);
+        m_Gameplay_LauncherHold = m_Gameplay.FindAction("LauncherHold", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,12 +195,14 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_LeftFlip;
     private readonly InputAction m_Gameplay_RightFlip;
+    private readonly InputAction m_Gameplay_LauncherHold;
     public struct GameplayActions
     {
         private @UserInput m_Wrapper;
         public GameplayActions(@UserInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftFlip => m_Wrapper.m_Gameplay_LeftFlip;
         public InputAction @RightFlip => m_Wrapper.m_Gameplay_RightFlip;
+        public InputAction @LauncherHold => m_Wrapper.m_Gameplay_LauncherHold;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -184,6 +218,9 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
             @RightFlip.started += instance.OnRightFlip;
             @RightFlip.performed += instance.OnRightFlip;
             @RightFlip.canceled += instance.OnRightFlip;
+            @LauncherHold.started += instance.OnLauncherHold;
+            @LauncherHold.performed += instance.OnLauncherHold;
+            @LauncherHold.canceled += instance.OnLauncherHold;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -194,6 +231,9 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
             @RightFlip.started -= instance.OnRightFlip;
             @RightFlip.performed -= instance.OnRightFlip;
             @RightFlip.canceled -= instance.OnRightFlip;
+            @LauncherHold.started -= instance.OnLauncherHold;
+            @LauncherHold.performed -= instance.OnLauncherHold;
+            @LauncherHold.canceled -= instance.OnLauncherHold;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -215,5 +255,6 @@ public partial class @UserInput: IInputActionCollection2, IDisposable
     {
         void OnLeftFlip(InputAction.CallbackContext context);
         void OnRightFlip(InputAction.CallbackContext context);
+        void OnLauncherHold(InputAction.CallbackContext context);
     }
 }
