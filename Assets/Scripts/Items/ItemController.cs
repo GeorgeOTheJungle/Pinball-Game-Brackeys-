@@ -3,8 +3,10 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     //Variables privadas
+    [SerializeField] private int pointsToGive = 10;
     [SerializeField] private float respawnTime = 5f;
     [SerializeField][Range(0f, 1f)] private float alpha = 0.5f;
+    [SerializeField] private bool isItem = true;
     private CircleCollider2D CC;
     private SpriteRenderer SR;
     private PowerUpSelector PUS;
@@ -16,11 +18,15 @@ public class ItemController : MonoBehaviour
         //Asignacion de referencias
         CC = GetComponent<CircleCollider2D>();
         SR = GetComponent<SpriteRenderer>();
-        PUS = GetComponent<PowerUpSelector>();
-
+        
         _respawnTime = respawnTime;
 
-        PUS.SelectPowerUp();
+        //Solo obtener referencias si es item
+        if (isItem)
+        {
+            PUS = GetComponent<PowerUpSelector>();
+            PUS.SelectPowerUp();
+        }
     }
 
     private void Update()
@@ -44,17 +50,24 @@ public class ItemController : MonoBehaviour
         if (other.gameObject.tag == "Ball" || other.gameObject.tag == "GhostBall")
         {
             DeactivateItem();
-            PUS.PowerUpObtained();
 
-            //TEMPORAL
-            PowerUps_Manager.Instance.ActivatePowerUp();
+            
+
+            //Solo dar item si es de ese tipo
+            if (isItem)
+            {
+                PUS.PowerUpObtained();
+
+                //TEMPORAL
+                PowerUps_Manager.Instance.ActivatePowerUp();
+            }
         }
     }
 
     //Funcion para desactivar el item
     private void DeactivateItem()
     {
-        //Desactivar trigger, cambiar el alpha y actualizar el booleano
+        //Desactivar trigger, cambiar el alpha, actualizar el booleano y dar puntos
         CC.enabled = false;
 
         Color tmp = SR.color;
@@ -62,6 +75,8 @@ public class ItemController : MonoBehaviour
         SR.color = tmp;
 
         active = false;
+
+        ScoreManager.Instance.PointsToAdd(pointsToGive);
     }
 
     //Funcion para activar el item
@@ -74,7 +89,11 @@ public class ItemController : MonoBehaviour
         tmp.a = 1f;
         SR.color = tmp;
 
-        PUS.SelectPowerUp();
+        //Solo asignar nuevo power up si es un item
+        if (isItem)
+        {
+            PUS.SelectPowerUp();
+        }
 
         active = true;
     }
