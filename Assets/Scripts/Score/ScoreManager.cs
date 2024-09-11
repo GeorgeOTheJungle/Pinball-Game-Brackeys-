@@ -15,11 +15,64 @@ public class ScoreManager : MonoBehaviour
     #endregion
 
     //Variables publicas
+    public int currentLife;
     public int currentScore = 0;
 
+    //Variables provadas
+    [Header("Life System")]
+    [SerializeField] private int maxLife;
+    [SerializeField] private int initialLife;
+
+    private void Start()
+    {
+        currentLife = initialLife;
+    }
+
+    #region Life System
+    //Funcion para sumar una vida al jugador
+    public void AddLife()
+    {
+        currentLife++;
+
+        //If que limita el numero de vida maxima
+        if (currentLife > maxLife)
+        {
+            currentLife = maxLife;
+        }
+    }
+
+    //Funcion para quitar una vida al jugador
+    public void TakeLife()
+    {
+        currentLife--;
+
+        if (currentLife <= 0)
+        {
+            //TERMINAR JUEGO
+        }
+    }
+    #endregion
+
+    #region Points System
     //Funcion para sumar puntos
     public void PointsToAdd(int points)
     {
         currentScore += points;
     }
+
+    //Funcion para quitar puntos
+    public void SubstractPoints(int points)
+    {
+        if (currentScore - points < 0)
+        {
+            //ANULAR COMPRA
+        }
+        else
+        {
+            currentScore -= points;
+
+            //AGREGAR COMPRA
+        }
+    }
+    #endregion
 }
