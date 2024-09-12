@@ -56,6 +56,11 @@ public class PowerUps_Manager : MonoBehaviour
             case 3:
                 Penetration();
                 break;
+
+            case 4:
+                AddLife();
+                break;
+
         }
     }
 
@@ -82,7 +87,13 @@ public class PowerUps_Manager : MonoBehaviour
     private void Penetration()
     {
         penetration = true;
-        _penetrationCharge = 3;
+        _penetrationCharge = penetrationCharges;
+    }
+
+    //Funcion para agregar una bola al jugador
+    private void AddLife()
+    {
+        ScoreManager.Instance.AddLife();
     }
     #endregion
 }

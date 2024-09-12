@@ -134,8 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e8f59c5eb5ef54fa5e10b2db30b446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsToGive: 10
   respawnTime: 5
   alpha: 0.5
+  isItem: 1
 --- !u!114 &266391068528666359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,4 +151,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actualPowerUp: 0
-  amountOfPowerUps: 4
+  amountOfPowerUps: 5
