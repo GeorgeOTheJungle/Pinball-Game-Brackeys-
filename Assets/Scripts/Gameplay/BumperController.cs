@@ -6,6 +6,7 @@ using UnityEngine;
 [SelectionBase]
 public class BumperController : MonoBehaviour
 {
+    [SerializeField] private int pointsToGive = 100;
     [SerializeField] private float m_upwardsModifier = 1f;
     [SerializeField] private float m_bumperForce = 150f;
 
@@ -31,6 +32,8 @@ public class BumperController : MonoBehaviour
                     ballRb.AddForce(Mathf.Lerp(0, m_bumperForce, (1 - bumpDistance)) * bumpDir, ForceMode2D.Force);
                     //ballRb.AddForce(collision.contacts[0].normal * m_bumperForce);
                 }
+
+                ScoreManager.Instance.PointsToAdd(pointsToGive);
             }
         }
     }
