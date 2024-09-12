@@ -5,8 +5,8 @@ using UnityEngine;
 [SelectionBase]
 public class Flipper : MonoBehaviour
 {
-    [SerializeField] private bool isRight = false;
-    [SerializeField] private float m_torqueForce = 150f;
+    [SerializeField] private bool m_isRight = false;
+    [SerializeField] private float m_additionalTorqueForce = 150f;
     [SerializeField] private Rigidbody2D m_joint;
 
     private InputController m_inputController;
@@ -20,7 +20,7 @@ public class Flipper : MonoBehaviour
     {
         if (m_inputController)
         {
-            if (isRight) m_inputController.RightFlipPressed += Flip;
+            if (m_isRight) m_inputController.RightFlipPressed += Flip;
             else m_inputController.LeftFlipPressed += Flip;
         }
     }
@@ -36,7 +36,18 @@ public class Flipper : MonoBehaviour
 
     public void Flip()
     {
-        Debug.Log("Performing Flip");
-        m_joint.AddTorque(m_torqueForce);
+        float force = m_isRight ? -GameConfiguration.Instance.FlipperForce : GameConfiguration.Instance.FlipperForce;
+        m_joint.AddTorque(force);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ball"))
+        {
+            if(TryGetComponent(out Rigidbody2D body))
+            {
+                body.AddForce(transform.up * m_additionalTorqueForce);
+            }
+        }
     }
 }

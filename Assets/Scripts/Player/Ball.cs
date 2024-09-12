@@ -9,6 +9,11 @@ public class Ball : MonoBehaviour
     [SerializeField] private Transform m_spawnPoint;
     [SerializeField] private Rigidbody2D m_rigidBody2d;
 
+    private void Start()
+    {
+        //UpdateDamages();
+    }
+
     public void OnBallLost()
     {
         // Lose a life here.
