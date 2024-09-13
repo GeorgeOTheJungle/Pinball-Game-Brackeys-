@@ -19,4 +19,10 @@ public class UI_Manager : MonoBehaviour
         scoreUI.text = SM.currentScore.ToString();
         ballsUI.text = "x" + SM.currentLife.ToString();
     }
+
+    //Funcion para salir del juego
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
