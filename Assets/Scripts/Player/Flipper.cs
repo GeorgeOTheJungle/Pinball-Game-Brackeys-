@@ -5,49 +5,61 @@ using UnityEngine;
 [SelectionBase]
 public class Flipper : MonoBehaviour
 {
-    [SerializeField] private bool m_isRight = false;
-    [SerializeField] private float m_additionalTorqueForce = 150f;
-    [SerializeField] private Rigidbody2D m_joint;
+    [Header("Flipper Settings: ")]
+    [SerializeField] private int m_flipperMotorVelocity;
+    [SerializeField] private int m_flipperMotorForce;
+    private bool m_isRight = false;
+    private bool m_flipping = false;
 
+    private HingeJoint2D m_joint;
     private InputController m_inputController;
 
     private void Awake()
     {
         m_inputController = GameObject.FindGameObjectWithTag("Player").GetComponent<InputController>(); // 0 Idea why using an instance doesn't work lol
+        m_joint = GetComponentInChildren<HingeJoint2D>();
     }
 
     private void OnEnable()
     {
-        if (m_inputController)
+        if(m_inputController != null)
         {
-            if (m_isRight) m_inputController.RightFlipPressed += Flip;
-            else m_inputController.LeftFlipPressed += Flip;
+            m_inputController.LeftFlipPressed += Flip;
         }
     }
 
     private void OnDisable()
     {
-        if (m_inputController)
+        if (m_inputController != null)
         {
-            m_inputController.RightFlipPressed -= Flip;
             m_inputController.LeftFlipPressed -= Flip;
         }
     }
 
-    public void Flip()
+    private void Update()
     {
-        float force = m_isRight ? -GameConfiguration.Instance.FlipperForce : GameConfiguration.Instance.FlipperForce;
-        m_joint.AddTorque(force);
+        if (m_flipping)
+        {
+            m_joint.motor = RotateFlipper(m_flipperMotorVelocity, m_flipperMotorForce);
+        }
+        else
+        {
+            m_joint.motor = RotateFlipper(-m_flipperMotorVelocity, m_flipperMotorForce);
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Flip(bool value)
     {
-        if (collision.CompareTag("Ball"))
-        {
-            if(TryGetComponent(out Rigidbody2D body))
-            {
-                body.AddForce(transform.up * m_additionalTorqueForce);
-            }
-        }
+        m_flipping = value;
+
+    }
+
+
+    private JointMotor2D RotateFlipper(float velocity, float force)
+    {
+        JointMotor2D joinMotor = new JointMotor2D();
+        joinMotor.motorSpeed = force;
+        joinMotor.maxMotorTorque = velocity;
+        return joinMotor;
     }
 }
