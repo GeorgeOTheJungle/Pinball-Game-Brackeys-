@@ -29,8 +29,9 @@ public class BumperController : MonoBehaviour
                     bumpDir.y += m_upwardsModifier;
                     bumpDir.Normalize();
 
-                    ballRb.AddForce(Mathf.Lerp(0, m_bumperForce, (1 - bumpDistance)) * bumpDir, ForceMode2D.Force);
+                    // ballRb.AddForce(Mathf.Lerp(0, m_bumperForce, (1 - bumpDistance)) * bumpDir, ForceMode2D.Force);
                     //ballRb.AddForce(collision.contacts[0].normal * m_bumperForce);
+                    ballRb.AddForce(collision.contacts[0].normal * m_bumperForce, ForceMode2D.Impulse);
                 }
 
                 ScoreManager.Instance.PointsToAdd(pointsToGive);

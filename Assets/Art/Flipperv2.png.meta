@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5d47fb279d8c760489d8899142982284
+guid: b7052c8a2997de845ad6a2f4c2a47041
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,64 +123,55 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_0
+      name: Flipperv2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 48
+        width: 80
+        height: 48
+      alignment: 9
+      pivot: {x: 0.21, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -23, y: 11}
+        - {x: -36, y: 11}
+        - {x: -36, y: -2}
+        - {x: -25, y: -14}
+        - {x: 32, y: -16}
+        - {x: 33, y: -11}
       tessellationDetail: 0
       bones: []
-      spriteID: 665d6c104b48bff44bc863b30e99d6b6
-      internalID: -1628396850
+      spriteID: ea5c32c69072d7f4eac47f35f2b84205
+      internalID: -323620618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Background_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05b93b757e51ad046891585d4e4fcd5f
-      internalID: -488234419
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Background_2
+      name: Flipperv2_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 80
+        height: 48
+      alignment: 9
+      pivot: {x: 0.79, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -33, y: -16}
+        - {x: 25, y: -13}
+        - {x: 37, y: -3}
+        - {x: 37, y: 11}
+        - {x: 22, y: 11}
+        - {x: -34, y: -11}
       tessellationDetail: 0
       bones: []
-      spriteID: d8c881c4c297ae340ad0ba696065cf3a
-      internalID: 1070407403
+      spriteID: 5bafacda319dec54e8f1d7b238a2c57f
+      internalID: 1974799015
       vertices: []
       indices: 
       edges: []
@@ -196,9 +187,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Background_0: -1628396850
-      Background_1: -488234419
-      Background_2: 1070407403
+      Flipperv2_0: -323620618
+      Flipperv2_1: 1974799015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

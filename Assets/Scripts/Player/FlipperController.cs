@@ -5,36 +5,71 @@ using UnityEngine;
 public class FlipperController : MonoBehaviour
 {
     // Controls game flippers.
-    [Header("Hit force")]
-    [SerializeField] private float m_hitForce = 150f;
+    [Header("Flippers")]
+    [SerializeField] private float m_speed = 0.0f;
+    [SerializeField] private HingeJoint2D m_leftHingeJoint;
+    [SerializeField] private HingeJoint2D m_rightHingeJoint;
+    private JointMotor2D m_leftJointMotor2d;
+    private JointMotor2D m_rightJointMotor2d;
 
-    [Header("Colliders"), Space(10)]
-    [SerializeField] private Collider2D[] m_flipperColliders;
-    [SerializeField] private Collider2D[] m_idleColliders;
-    public void Flip()
+    private bool m_leftIsFlipping = false;
+    private bool m_rightIsFlipping = false;
+    private InputController m_inputController;
+    private void Awake()
     {
-        // TODO: en vez de rotarlo, usar la animacion, y que cheque con colliders si esta la bola.
-        //StartCoroutine(FlipAnimation());
-        //IEnumerator FlipAnimation()
-        //{
-        //    SetFlippers(true);
+        m_inputController = GameObject.FindGameObjectWithTag("Player").GetComponent<InputController>();
+    }
 
-        //    yield return new WaitForSeconds(0.1f);
+    private void OnEnable()
+    {
+        m_inputController.LeftFlipPressed += LeftFlip;
+        m_inputController.RightFlipPressed += RightFlip;
+    }
 
-        //    SetFlippers(false);
-        //}
+    private void OnDisable()
+    {
+        m_inputController.LeftFlipPressed -= LeftFlip;
+        m_inputController.RightFlipPressed -= RightFlip;
+    }
 
-        //void SetFlippers(bool value)
-        //{
-        //    foreach (var flipper in m_flipperColliders)
-        //    {
-        //        flipper.enabled = value;
-        //    }
 
-        //    foreach (var backFlipper in m_idleColliders)
-        //    {
-        //        backFlipper.enabled = !value;
-        //    }
-        //}
+    private void Start()
+    {
+        m_leftJointMotor2d = m_leftHingeJoint.motor;
+        m_rightJointMotor2d = m_rightHingeJoint.motor;
+    }
+
+    private void FixedUpdate()
+    {
+        if (m_leftIsFlipping)
+        {
+            m_leftJointMotor2d.motorSpeed = m_speed;
+            m_leftHingeJoint.motor = m_leftJointMotor2d;
+        } else
+        {
+            m_leftJointMotor2d.motorSpeed = -m_speed;
+            m_leftHingeJoint.motor = m_leftJointMotor2d;
+        }
+
+        if (m_rightIsFlipping)
+        {
+            m_rightJointMotor2d.motorSpeed = -m_speed;
+            m_rightHingeJoint.motor = m_rightJointMotor2d;
+        }
+        else
+        {
+            m_rightJointMotor2d.motorSpeed = m_speed;
+            m_rightHingeJoint.motor = m_rightJointMotor2d;
+        }
+    }
+
+    public void LeftFlip(bool value)
+    {
+        m_leftIsFlipping = value;
+    }
+
+    public void RightFlip(bool value)
+    {
+        m_rightIsFlipping = value;
     }
 }

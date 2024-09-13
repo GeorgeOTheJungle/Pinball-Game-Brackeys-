@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5d47fb279d8c760489d8899142982284
+guid: 467c001f00618294891aa08a0e1c0569
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,64 +123,51 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_0
+      name: BottomWalls_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 32
-        height: 32
+        y: 66
+        width: 146
+        height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 71, y: -30}
+        - {x: -70, y: 31}
+        - {x: -70, y: -32}
+        - {x: 71, y: -32}
       tessellationDetail: 0
       bones: []
-      spriteID: 665d6c104b48bff44bc863b30e99d6b6
-      internalID: -1628396850
+      spriteID: c94a2f96928b8834cae8c64d661d5ea4
+      internalID: -1801606993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Background_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05b93b757e51ad046891585d4e4fcd5f
-      internalID: -488234419
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Background_2
+      name: BottomWalls_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 146
+        height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -69, y: -30}
+        - {x: -69, y: -32}
+        - {x: 71, y: -32}
+        - {x: 71, y: 32}
       tessellationDetail: 0
       bones: []
-      spriteID: d8c881c4c297ae340ad0ba696065cf3a
-      internalID: 1070407403
+      spriteID: 142a9b71460596044a7286e7e526dd20
+      internalID: 1855607587
       vertices: []
       indices: 
       edges: []
@@ -196,9 +183,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Background_0: -1628396850
-      Background_1: -488234419
-      Background_2: 1070407403
+      BottomWalls_0: -1801606993
+      BottomWalls_1: 1855607587
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
