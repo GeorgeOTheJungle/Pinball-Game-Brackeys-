@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerUps_Manager : MonoBehaviour
@@ -15,7 +16,11 @@ public class PowerUps_Manager : MonoBehaviour
     #endregion
 
     //Variables publicas
+    public bool collectionPhase = true;
+
+    [Header("PowerUp Inventory")]
     public int activePowerUp;
+    public List<int> inventory = new List<int>();
 
     [Header("Damages Locos")]
     public int ballDamage = 0;
@@ -36,26 +41,42 @@ public class PowerUps_Manager : MonoBehaviour
     [Header("Penetracion Uffas")]
     [SerializeField] private int penetrationCharges = 3;
 
+    //Funcion para guardar un power up en el inventario
+    public void SavePowerUp()
+    {
+        inventory.Add(activePowerUp);
+    }
+
     //Funcion para activar el power up
     public void ActivatePowerUp()
     {
-        switch (activePowerUp)
+        switch (inventory[0])
         {
             case 0:
                 GhostBall();
+                inventory.RemoveAt(0);
                 break;
 
             case 1:
                 ExitLock();
+                inventory.RemoveAt(0);
                 break;
 
             case 2:
                 MoreDamage();
+                inventory.RemoveAt(0);
                 break;
 
             case 3:
                 Penetration();
+                inventory.RemoveAt(0);
                 break;
+
+            case 4:
+                AddLife();
+                inventory.RemoveAt(0);
+                break;
+
         }
     }
 
@@ -82,7 +103,13 @@ public class PowerUps_Manager : MonoBehaviour
     private void Penetration()
     {
         penetration = true;
-        _penetrationCharge = 3;
+        _penetrationCharge = penetrationCharges;
+    }
+
+    //Funcion para agregar una bola al jugador
+    private void AddLife()
+    {
+        ScoreManager.Instance.AddLife();
     }
     #endregion
 }

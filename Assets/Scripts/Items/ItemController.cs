@@ -51,15 +51,21 @@ public class ItemController : MonoBehaviour
         {
             DeactivateItem();
 
-            
-
             //Solo dar item si es de ese tipo
             if (isItem)
             {
                 PUS.PowerUpObtained();
 
-                //TEMPORAL
-                PowerUps_Manager.Instance.ActivatePowerUp();
+                //Comprobar si es la fase de recollecion, si si activar el item o guardarlo en el inventario
+                if (PowerUps_Manager.Instance.collectionPhase)
+                {
+                    PowerUps_Manager.Instance.SavePowerUp();
+                    PowerUps_Manager.Instance.ActivatePowerUp();
+                }
+                else
+                {
+                    PowerUps_Manager.Instance.SavePowerUp();
+                }
             }
         }
     }

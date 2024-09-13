@@ -9,7 +9,7 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
-        //UpdateDamages();
+        UpdateDamages();
     }
 
     public void OnBallLost()
