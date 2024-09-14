@@ -6,6 +6,7 @@ public class UI_Manager : MonoBehaviour
     //Variables privadas
     [SerializeField] private TextMeshProUGUI scoreUI;
     [SerializeField] private TextMeshProUGUI ballsUI;
+    [SerializeField] private TextMeshProUGUI shopScoreUI;
     private ScoreManager SM;
 
     private void Start()
@@ -18,5 +19,12 @@ public class UI_Manager : MonoBehaviour
     {
         scoreUI.text = SM.currentScore.ToString();
         ballsUI.text = "x" + SM.currentLife.ToString();
+        shopScoreUI.text = SM.currentScore.ToString();
+    }
+
+    //Funcion para salir del juego
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

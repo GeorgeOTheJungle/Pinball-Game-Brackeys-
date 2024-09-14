@@ -59,20 +59,5 @@ public class ScoreManager : MonoBehaviour
     {
         currentScore += points;
     }
-
-    //Funcion para quitar puntos
-    public void SubstractPoints(int points)
-    {
-        if (currentScore - points < 0)
-        {
-            //ANULAR COMPRA
-        }
-        else
-        {
-            currentScore -= points;
-
-            //AGREGAR COMPRA
-        }
-    }
     #endregion
 }
