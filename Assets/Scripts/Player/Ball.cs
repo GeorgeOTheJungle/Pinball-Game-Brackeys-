@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    //Variables publicas
     public int damage = 0;
-
-    [SerializeField] private Transform m_spawnPoint;
-    [SerializeField] private Rigidbody2D m_rigidBody2d;
 
     private void Start()
     {
@@ -14,11 +12,7 @@ public class Ball : MonoBehaviour
 
     public void OnBallLost()
     {
-        // Lose a life here.
-
-        transform.position = m_spawnPoint.position;
-        m_rigidBody2d.velocity = Vector2.zero;
-
+        GameManager.Instance.SpawnABall();
     }
 
     //Funcion para actualizar los damages
