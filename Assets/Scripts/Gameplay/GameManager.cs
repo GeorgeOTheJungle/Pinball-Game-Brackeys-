@@ -16,16 +16,25 @@ public class GameManager : MonoBehaviour
 
     //Variables publicas
     public bool isPlaying = false;
+    public bool bossPhase = false;
+    public bool win = false;
+    public bool blocked = false;
 
     //Variables privadas
     [Header("PlayerBalls Configuration")]
-    [SerializeField] private GameObject playerBall;
+    public GameObject playerBall;
     [SerializeField] private Rigidbody2D m_rigidBody2d;
     [SerializeField] private Transform ballSpawn;
 
     [Header("First Phase Configuration")]
     [SerializeField] private bool firstPhase = true;
     [SerializeField] private float firstPhaseTime = 60f;
+
+    [Header("Boss Settings")]
+    [SerializeField] private GameObject boss;
+    [SerializeField] private GameObject turnOffStage;
+    [SerializeField] private float blockedTime = 2f;
+    private float _blockedTime;
 
     private void Update()
     {
@@ -42,8 +51,19 @@ public class GameManager : MonoBehaviour
                 UI_Manager.Instance.OpenShop();
             }
         }
+
+        if (blocked)
+        {
+            _blockedTime -= Time.deltaTime;
+
+            if (_blockedTime <= 0)
+            {
+                UnlockPlayer();
+            }
+        }
     }
 
+    #region Game States
     //Funcion para iniciar el juego
     public void StartGame()
     {
@@ -59,14 +79,40 @@ public class GameManager : MonoBehaviour
         isPlaying = false;
     }
 
+    //Funcion de victoria
+    public void Win()
+    {
+
+    }
+    #endregion
+
+    #region Boss Functions
     //Funcion para iniciar la fase del boss
     public void StartBossPhase()
     {
-        //Invocar boss y desactivar parte del mapa
+        turnOffStage.SetActive(false);
+        boss.SetActive(true);
+        bossPhase = true;
 
         UI_Manager.Instance.CloseShop();
         isPlaying = true;
     }
+
+    //Funcion para bloquear al jugador
+    public void BlockPlayer()
+    {
+        blocked = true;
+        _blockedTime = blockedTime;
+        InputController.Instance.m_playerInput.Disable();
+    }
+
+    //Funcion para desbloquear al jugador
+    public void UnlockPlayer()
+    {
+        blocked = false;
+        InputController.Instance.m_playerInput.Enable();
+    }
+    #endregion
 
     //Funcion para invocar una bola
     public void SpawnABall()

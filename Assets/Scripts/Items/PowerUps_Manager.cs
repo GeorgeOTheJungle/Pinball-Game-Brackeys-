@@ -104,10 +104,11 @@ public class PowerUps_Manager : MonoBehaviour
         Instantiate(lock_Prefab, lock_Spawn.transform.position, Quaternion.identity);
     }
 
-    //Funcion para crear mas flippers
+    //Funcion para aumentar los damages
     private void MoreDamage()
     {
         ballDamage++;
+        GameManager.Instance.playerBall.GetComponent<Ball>().UpdateDamages();
     }
 
     //Funcion para que la bola penetre

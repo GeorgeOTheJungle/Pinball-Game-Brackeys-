@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BottomGap : MonoBehaviour
@@ -12,6 +10,11 @@ public class BottomGap : MonoBehaviour
         {
             ScoreManager.Instance.TakeLife();
             m_ball.OnBallLost();
+        }
+
+        if (collision.CompareTag("BadBall"))
+        {
+            GameManager.Instance.BlockPlayer();
         }
     }
 }

@@ -14,7 +14,7 @@ public class InputController : MonoBehaviour
     public BoolEvent RightFlipPressed;
     public BoolEvent LauncherEvent;
 
-    private UserInput m_playerInput;
+    public UserInput m_playerInput;
 
     private void Awake()
     {
@@ -32,4 +32,6 @@ public class InputController : MonoBehaviour
         m_playerInput.Gameplay.LauncherHold.performed += _ => LauncherEvent?.Invoke(true);
         m_playerInput.Gameplay.LauncherHold.canceled += _ => LauncherEvent?.Invoke(false);
     }
+
+    
 }
