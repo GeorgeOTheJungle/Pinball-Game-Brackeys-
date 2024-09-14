@@ -19,8 +19,15 @@ public class UI_Manager : MonoBehaviour
     //Variables privadas
     [SerializeField] private TextMeshProUGUI scoreUI;
     [SerializeField] private TextMeshProUGUI ballsUI;
+
+    [Header("GameOver")]
+    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private TextMeshProUGUI gameOverScoreUI;
+
+    [Header("Shop")]
+    [SerializeField] private GameObject shopUI;
     [SerializeField] private TextMeshProUGUI shopScoreUI;
-    [SerializeField] private TextMeshProUGUI gameOverUI;
+
     private ScoreManager SM;
 
     private void Start()
@@ -34,6 +41,7 @@ public class UI_Manager : MonoBehaviour
         scoreUI.text = SM.currentScore.ToString();
         ballsUI.text = "x" + SM.currentLife.ToString();
         shopScoreUI.text = SM.currentScore.ToString();
+        gameOverScoreUI.text = SM.currentScore.ToString();
     }
 
     //Funcion para salir del juego
@@ -52,5 +60,17 @@ public class UI_Manager : MonoBehaviour
     public void ShowGameOver()
     {
         gameOverUI.gameObject.SetActive(true);
+    }
+
+    //Funcion para abrir la tienda
+    public void OpenShop()
+    {
+        shopUI.SetActive(true);
+    }
+
+    //Funcion para cerrar la tienda
+    public void CloseShop()
+    {
+        shopUI.gameObject.SetActive(false);
     }
 }

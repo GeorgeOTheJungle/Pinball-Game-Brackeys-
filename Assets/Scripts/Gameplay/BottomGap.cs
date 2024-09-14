@@ -10,6 +10,7 @@ public class BottomGap : MonoBehaviour
     {
         if (collision.CompareTag("Ball"))
         {
+            ScoreManager.Instance.TakeLife();
             m_ball.OnBallLost();
         }
     }

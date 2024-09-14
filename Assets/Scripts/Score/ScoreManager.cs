@@ -46,9 +46,11 @@ public class ScoreManager : MonoBehaviour
     {
         currentLife--;
 
+        //Activar menu de GameOver y evitar valores negativos
         if (currentLife <= 0)
         {
             GameManager.Instance.GameOver();
+            currentLife = 0;
         }
     }
     #endregion
