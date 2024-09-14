@@ -48,7 +48,7 @@ public class ScoreManager : MonoBehaviour
 
         if (currentLife <= 0)
         {
-            //TERMINAR JUEGO
+            GameManager.Instance.GameOver();
         }
     }
     #endregion

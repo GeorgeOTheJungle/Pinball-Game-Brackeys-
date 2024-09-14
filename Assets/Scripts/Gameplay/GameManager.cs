@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     //Funcion para terminar el juego
     public void GameOver()
     {
-
+        isPlaying = false;
+        UI_Manager.Instance.ShowGameOver();
     }
 }
