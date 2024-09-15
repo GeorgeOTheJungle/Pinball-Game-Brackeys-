@@ -20,6 +20,7 @@ public class ScoreManager : MonoBehaviour
 
     //Variables provadas
     [Header("Life System")]
+    [SerializeField] private bool canTakeDamage;
     [SerializeField] private int maxLife;
     [SerializeField] private int initialLife;
 
@@ -44,6 +45,7 @@ public class ScoreManager : MonoBehaviour
     //Funcion para quitar una vida al jugador
     public void TakeLife()
     {
+        if (canTakeDamage == false) return;
         currentLife--;
 
         //Activar menu de GameOver y evitar valores negativos
