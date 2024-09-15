@@ -5,11 +5,6 @@ public class Ball : MonoBehaviour
     //Variables publicas
     public int damage = 0;
 
-    private void Start()
-    {
-        UpdateDamages();
-    }
-
     public void OnBallLost()
     {
         GameManager.Instance.SpawnABall();

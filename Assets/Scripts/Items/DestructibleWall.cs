@@ -5,6 +5,11 @@ public class DestructibleWall : MonoBehaviour
     //Variables privadas
     [SerializeField] private int hitsToDestroy = 3;
     [SerializeField] private float timeToRebuild = 5f;
+
+    [Header("BossWall Options")]
+    [SerializeField] private bool isFromBoss = false;
+    [SerializeField] private float timeLife = 30f;
+
     private PowerUps_Manager PU_Manager;
     private SpriteRenderer SR;
     private BoxCollider2D BC;
@@ -22,15 +27,28 @@ public class DestructibleWall : MonoBehaviour
 
     private void Update()
     {
-        if (destroyed)
+        //Definir comportamiento dependiendo de si es muro de jefe o de nivel
+        if (isFromBoss)
         {
-            _timeToRebuild -= Time.deltaTime;
+            timeLife -= Time.deltaTime;
 
-            if (_timeToRebuild <= 0f)
+            if (timeLife <= 0)
             {
-                RebuildBlock();
+                Destroy(gameObject);
             }
         }
+        else
+        {
+            if (destroyed)
+            {
+                _timeToRebuild -= Time.deltaTime;
+
+                if (_timeToRebuild <= 0f)
+                {
+                    RebuildBlock();
+                }
+            }
+        } 
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -65,16 +83,23 @@ public class DestructibleWall : MonoBehaviour
     //Funcion para "destruir" el bloque
     private void DestroyBlock()
     {
-        _timeToRebuild = timeToRebuild;
+        if (isFromBoss)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _timeToRebuild = timeToRebuild;
 
-        //Hacerlo transparente y sin colisiones
-        Color tmp = SR.color;
-        tmp.a = 0f;
-        SR.color = tmp;
+            //Hacerlo transparente y sin colisiones
+            Color tmp = SR.color;
+            tmp.a = 0f;
+            SR.color = tmp;
 
-        BC.enabled = false;
+            BC.enabled = false;
 
-        destroyed = true;
+            destroyed = true;
+        }
     }
 
     //Funcion para reconstruir el bloque
